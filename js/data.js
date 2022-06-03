@@ -54,14 +54,14 @@ const createComment = () => {
   }
 };
 
-const createSomeComments = (amount) => {
-  let someComments = [];
+const createComments = (amount) => {
+  let comments = [];
 
   for (let i = 0; i < amount; i++) {
-    someComments.push(createComment());
+    comments.push(createComment());
   }
 
-  return someComments;
+  return comments;
 };
 
 const createPhotoDescription = (id, url) => {
@@ -70,15 +70,22 @@ const createPhotoDescription = (id, url) => {
     url,
     description: 'Описание фотографии',
     likes: getRandomInt(LIKES_MIN_AMOUNT, LIKES_MAX_AMOUNT),
-    comments: createSomeComments(getRandomInt(COMMENTS_MIN_AMOUNT, COMMENTS_MAX_AMOUNT)),
+    comments: createComments(getRandomInt(COMMENTS_MIN_AMOUNT, COMMENTS_MAX_AMOUNT)),
   }
 }
 
-let commentIds = [];
-let photoDescriptions = [];
+const createPhotoDescriptions = () => {
+  let photoDescriptions = [];
 
-for (let i = 1; i <= PHOTOS_AMOUNT; i++) {
-  photoDescriptions.push(createPhotoDescription(i, `photos/${i}.jpg`));
+  for (let i = 1; i <= PHOTOS_AMOUNT; i++) {
+    photoDescriptions.push(createPhotoDescription(i, `photos/${i}.jpg`));
+  }
+
+  return photoDescriptions;
 }
 
+let commentIds = [];
+
 checkLength('Умняш', 6);
+
+export {createPhotoDescriptions};
