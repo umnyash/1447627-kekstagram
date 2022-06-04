@@ -8,7 +8,7 @@ const pictureTemplate = document.querySelector('#picture').content.querySelector
 const createPictureNode = ({id, url, comments, likes}) => {
   const pictureNode = pictureTemplate.cloneNode(true);
 
-  pictureNode.setAttribute('data-id', id);
+  pictureNode.dataset.id = id;
   pictureNode.querySelector('.picture__img').src = url;
   pictureNode.querySelector('.picture__comments').textContent = comments.length;
   pictureNode.querySelector('.picture__likes').textContent = likes;
@@ -35,7 +35,7 @@ const onPictureClick = (evt) => {
     return;
   }
 
-  const pictureId = evt.target.closest('.picture').getAttribute('data-id');
+  const pictureId = evt.target.closest('.picture').dataset.id;
 
   changeBigPicturePreview(pictureId);
   openOverlay();
