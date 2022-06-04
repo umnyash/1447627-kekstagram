@@ -1,4 +1,4 @@
-import {getRandomInt, getRandomArrayItem, checkLength} from './util.js';
+import {getRandomInt, getRandomArrayItem} from './util.js';
 
 const PHOTOS_AMOUNT = 25;
 const AVATARS_AMOUNT = 6;
@@ -48,7 +48,7 @@ const getNewRandomId = () => {
 const createComment = () => {
   return {
     id: getNewRandomId(),
-    avatar: `img/avatar-${getRandomInt(1, AVATARS_AMOUNT)}`,
+    avatar: `img/avatar-${getRandomInt(1, AVATARS_AMOUNT)}.svg`,
     message: getRandomArrayItem(MESSAGES),
     name: getRandomArrayItem(NAMES),
   }
@@ -85,7 +85,6 @@ const createPhotoDescriptions = () => {
 }
 
 let commentIds = [];
+const photoDescriptions = createPhotoDescriptions();
 
-checkLength('Умняш', 6);
-
-export {createPhotoDescriptions};
+export {photoDescriptions};

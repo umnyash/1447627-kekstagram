@@ -13,4 +13,10 @@ const checkLength = (string, maxLength) => {
   return (string.length <= maxLength);
 };
 
-export {getRandomInt, getRandomArrayItem, checkLength};
+const isEscEvent = (evt) => {
+  return evt.key === 'Escape' || evt.key === 'Esc';
+};
+
+checkLength('Умняш', 6);
+
+export {getRandomInt, getRandomArrayItem, isEscEvent};

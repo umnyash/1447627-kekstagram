@@ -1,12 +1,14 @@
-import {createPhotoDescriptions} from './data.js';
+import {photoDescriptions} from './data.js';
+import {changeBigPicturePreview} from './big-picture.js';
+import {openOverlay} from './overlay.js';
 
 const picturesNode = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
-const picturesData = createPhotoDescriptions();
 
-const createPictureNode = ({url, comments, likes}) => {
+const createPictureNode = ({id, url, comments, likes}) => {
   const pictureNode = pictureTemplate.cloneNode(true);
 
+  pictureNode.setAttribute('data-id', id);
   pictureNode.querySelector('.picture__img').src = url;
   pictureNode.querySelector('.picture__comments').textContent = comments.length;
   pictureNode.querySelector('.picture__likes').textContent = likes;
@@ -17,7 +19,7 @@ const createPictureNode = ({url, comments, likes}) => {
 const renderPictureNodes = () => {
   const picturesFragment = document.createDocumentFragment();
 
-  picturesData.forEach((picture) => {
+  photoDescriptions.forEach((picture) => {
     picturesFragment.appendChild(createPictureNode(picture));
   });
 
@@ -25,3 +27,18 @@ const renderPictureNodes = () => {
 }
 
 renderPictureNodes();
+
+const onPictureClick = (evt) => {
+  evt.preventDefault();
+
+  if (!evt.target.closest('.picture')) {
+    return;
+  }
+
+  const pictureId = evt.target.closest('.picture').getAttribute('data-id');
+
+  changeBigPicturePreview(pictureId);
+  openOverlay();
+};
+
+picturesNode.addEventListener('click', onPictureClick);
