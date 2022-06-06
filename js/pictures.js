@@ -29,16 +29,16 @@ const renderPictureNodes = () => {
 renderPictureNodes();
 
 const onPictureClick = (evt) => {
-  evt.preventDefault();
-
   if (!evt.target.closest('.picture')) {
     return;
+  } else {
+    evt.preventDefault();
+
+    const pictureId = evt.target.closest('.picture').dataset.id;
+
+    changeBigPicturePreview(pictureId);
+    openOverlay();
   }
-
-  const pictureId = evt.target.closest('.picture').dataset.id;
-
-  changeBigPicturePreview(pictureId);
-  openOverlay();
 };
 
 picturesNode.addEventListener('click', onPictureClick);
