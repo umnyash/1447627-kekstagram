@@ -4,6 +4,7 @@ const imgUploadNode = document.querySelector('.img-upload');
 const imgUploadInputNode = imgUploadNode.querySelector('#upload-file');
 const imgUploadOverlayNode = imgUploadNode.querySelector('.img-upload__overlay');
 const imgUploadCancelNode = imgUploadNode.querySelector('#upload-cancel');
+const imgUploadPreviewImgNode = imgUploadNode.querySelector('.img-upload__preview img');
 
 const onImgUploadOverlayEscKeydown = (evt) => {
   if (isEscEvent(evt)) {
@@ -24,6 +25,12 @@ const closeImgUploadOverlay = () => {
   document.removeEventListener('keydown', onImgUploadOverlayEscKeydown);
 };
 
+const setPreviewImgScale = (scale) => {
+  imgUploadPreviewImgNode.style.transform = `scale(${scale}%)`;
+};
+
 imgUploadInputNode.addEventListener('change', openImgUploadOverlay);
 
 imgUploadCancelNode.addEventListener('click', closeImgUploadOverlay);
+
+export {setPreviewImgScale};
