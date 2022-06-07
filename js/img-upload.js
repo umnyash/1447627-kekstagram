@@ -1,4 +1,4 @@
-import { isEscEvent } from "./util.js";
+import {isEscEvent} from './util.js';
 
 const imgUploadNode = document.querySelector('.img-upload');
 const imgUploadInputNode = imgUploadNode.querySelector('#upload-file');
@@ -29,8 +29,18 @@ const setPreviewImgScale = (scale) => {
   imgUploadPreviewImgNode.style.transform = `scale(${scale}%)`;
 };
 
+const setPreviewImgEffect = (effect) => {
+  if (effect === 'none') {
+    imgUploadPreviewImgNode.className = '';
+  } else {
+    imgUploadPreviewImgNode.className = `effects__preview--${effect}`;
+  }
+};
+
 imgUploadInputNode.addEventListener('change', openImgUploadOverlay);
 
 imgUploadCancelNode.addEventListener('click', closeImgUploadOverlay);
 
-export {setPreviewImgScale};
+openImgUploadOverlay();
+
+export {setPreviewImgScale, setPreviewImgEffect};
