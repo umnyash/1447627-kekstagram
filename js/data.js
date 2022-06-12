@@ -1,13 +1,27 @@
-import {getRandomInt, getRandomArrayItem} from './util.js';
+import {getRandomInteger, getRandomArrayItem, createUniqueRandomIntegerGenerator} from './util.js';
 
 const PHOTOS_AMOUNT = 25;
 const AVATARS_AMOUNT = 6;
-const LIKES_MIN_AMOUNT = 15;
-const LIKES_MAX_AMOUNT = 200;
-const COMMENTS_MIN_AMOUNT = 1;
-const COMMENTS_MAX_AMOUNT = 6;
-const COMMENT_MIN_ID = 1;
-const COMMENT_MAX_ID = 999;
+
+const Likes = {
+  MIN_AMOUNT: 15,
+  MAX_AMOUNT: 200,
+};
+
+const Comments = {
+  MIN_AMOUNT: 1,
+  MAX_AMOUNT: 6,
+  MIN_ID: 1,
+  MAX_ID: 999,
+};
+
+const DESCRIPTIONS = [
+  'Закат на море',
+  'Суши-кот',
+  'Хор',
+  'Краб',
+  'Концерт',
+];
 
 const NAMES = [
   'Роман',
@@ -30,49 +44,43 @@ const MESSAGES = [
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
 ];
 
-const checkDuplicate = (value, array) => {
-  return array.some((item) => value === item);
-};
+// Функция для создания одного комментария
 
-const getNewRandomId = () => {
-  let id = getRandomInt(COMMENT_MIN_ID, COMMENT_MAX_ID);
-
-  if (checkDuplicate(id, commentIds)) {
-    return getNewRandomId();
-  } else {
-    commentIds.push(id);
-    return id;
-  }
-};
-
-const createComment = () => {
+const createComment = (id) => {
   return {
-    id: getNewRandomId(),
-    avatar: `img/avatar-${getRandomInt(1, AVATARS_AMOUNT)}.svg`,
+    id,
+    avatar: `img/avatar-${getRandomInteger(1, AVATARS_AMOUNT)}.svg`,
     message: getRandomArrayItem(MESSAGES),
     name: getRandomArrayItem(NAMES),
   }
 };
 
+// Функция для создания нескольких комментариев
+
 const createComments = (amount) => {
+  const getRandomId = createUniqueRandomIntegerGenerator(Comments.MIN_ID, Comments.MAX_ID);
   let comments = [];
 
   for (let i = 0; i < amount; i++) {
-    comments.push(createComment());
+    comments.push(createComment(getRandomId()));
   }
 
   return comments;
 };
 
+// Функция для создания объекта с данными о фотографии
+
 const createPhotoDescription = (id, url) => {
   return {
     id,
     url,
-    description: 'Описание фотографии',
-    likes: getRandomInt(LIKES_MIN_AMOUNT, LIKES_MAX_AMOUNT),
-    comments: createComments(getRandomInt(COMMENTS_MIN_AMOUNT, COMMENTS_MAX_AMOUNT)),
+    description: getRandomArrayItem(DESCRIPTIONS),
+    likes: getRandomInteger(Likes.MIN_AMOUNT, Likes.MAX_AMOUNT),
+    comments: createComments(getRandomInteger(Comments.MIN_AMOUNT, Comments.MAX_AMOUNT)),
   }
 }
+
+// Функция для создания массива объектов с данными о фотографиях
 
 const createPhotoDescriptions = () => {
   let photoDescriptions = [];
@@ -84,7 +92,8 @@ const createPhotoDescriptions = () => {
   return photoDescriptions;
 }
 
-let commentIds = [];
+// Создание описаний фотографий
+
 const photoDescriptions = createPhotoDescriptions();
 
 export {photoDescriptions};
