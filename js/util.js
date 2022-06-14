@@ -37,6 +37,10 @@ const createUniqueRandomIntegerGenerator = (from, to) => {
   };
 };
 
+const checkMinLength = (string, minLength) => {
+  return (string.length >= minLength);
+};
+
 const checkMaxLength = (string, maxLength) => {
   return (string.length <= maxLength);
 };
@@ -45,6 +49,4 @@ const isEscEvent = (evt) => {
   return evt.key === Keys.ESCAPE || evt.key === Keys.ESC;
 };
 
-checkMaxLength('Умняш', 6);
-
-export {getRandomInteger, getRandomArrayItem, createUniqueRandomIntegerGenerator, isEscEvent};
+export {getRandomInteger, getRandomArrayItem, createUniqueRandomIntegerGenerator, isEscEvent, checkMinLength, checkMaxLength};
