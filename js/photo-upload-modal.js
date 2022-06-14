@@ -121,6 +121,4 @@ photoUploadInput.addEventListener('change', openPhotoUploadModal);
 
 modalCloseButton.addEventListener('click', closePhotoUploadModal);
 
-openPhotoUploadModal();
-
 export {setPhotoEffectClass, setPhotoFilter, removePhotoEffect};
