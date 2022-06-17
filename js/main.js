@@ -4,6 +4,7 @@ import {showAlert} from './util.js';
 import {setPhotoUploadFormSubmit, closePhotoUploadModal} from './photo-upload-modal.js';
 import './photo-effects.js';
 import './photo-upload-text.js';
+import {showMessage, closeMessage} from './messages.js';
 
 const PHOTO_PREVIEWS_COUNT = 25;
 
