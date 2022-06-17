@@ -1,3 +1,4 @@
+import {sendData} from './api.js';
 import {isEscEvent} from './util.js';
 
 const Scale = {
@@ -121,4 +122,17 @@ photoUploadInput.addEventListener('change', openPhotoUploadModal);
 
 modalCloseButton.addEventListener('click', closePhotoUploadModal);
 
-export {setPhotoEffectClass, setPhotoFilter, removePhotoEffect};
+//
+const setPhotoUploadFormSubmit = (onSuccess, onFail) => {
+  photoEditForm.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+
+    sendData(
+      () => onSuccess(),
+      () => onFail(),
+      new FormData(evt.target)
+    );
+  });
+};
+
+export {setPhotoEffectClass, setPhotoFilter, removePhotoEffect, setPhotoUploadFormSubmit, closePhotoUploadModal};
