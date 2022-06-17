@@ -1,4 +1,5 @@
 import {isEscEvent} from './util.js';
+import {photoDescriptions} from './data.js';
 
 const photoViewModal = document.querySelector('.big-picture');
 const modalCloseButton = photoViewModal.querySelector('.big-picture__cancel');
@@ -54,13 +55,15 @@ const renderComments = (comments) => {
 
 // Функция для отображения выбранной фотографии и сопуствующих данных
 
-const selectPhoto = ({url, description, likes, comments}) => {
-  photoViewModal.querySelector('.big-picture__img img').src = url;
-  photoViewModal.querySelector('.social__caption').textContent = description;
-  photoViewModal.querySelector('.likes-count').textContent = likes;
-  photoViewModal.querySelector('.comments-count').textContent = comments.length;
+const selectPhoto = (id) => {
+  const index = id - 1;
+
+  photoViewModal.querySelector('.big-picture__img img').src = photoDescriptions[index].url;
+  photoViewModal.querySelector('.social__caption').textContent = photoDescriptions[index].description;
+  photoViewModal.querySelector('.likes-count').textContent = photoDescriptions[index].likes;
+  photoViewModal.querySelector('.comments-count').textContent = photoDescriptions[index].comments.length;
   commentsList.innerHTML = '';
-  renderComments(comments);
+  renderComments(photoDescriptions[index].comments);
 
   // Временное скрытие элементов
   photoViewModal.querySelector('.social__comment-count').classList.add('hidden');

@@ -1,12 +1,9 @@
-import {photoDescriptions} from './data.js';
 import {openPhotoViewModal, selectPhoto} from './photo-view-modal.js'
 
 const photoPreviewsWrapper = document.querySelector('.pictures');
-const photoPreviewsFragment = document.createDocumentFragment();
 const photoPreviewTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
-// Создание и отрисовка миниатюр фотографий
-
+// Создание миниатюры фотографии
 const createphotoPreview = ({id, url, comments, likes}) => {
   const photoPreview = photoPreviewTemplate.cloneNode(true);
 
@@ -18,25 +15,33 @@ const createphotoPreview = ({id, url, comments, likes}) => {
   return photoPreview;
 };
 
-photoDescriptions.forEach((photo) => {
-  photoPreviewsFragment.appendChild(createphotoPreview(photo));
-});
+// Функция для отрисовки миниатюр фотографий
+const renderPhotoPreviews = (photoDescriptions) => {
+  const photoPreviewsFragment = document.createDocumentFragment();
 
-photoPreviewsWrapper.appendChild(photoPreviewsFragment);
+  photoDescriptions.forEach((photo) => {
+    photoPreviewsFragment.appendChild(createphotoPreview(photo));
+  });
 
-// Добавление обработчика нажатия по миниатюрам фотографий
-
-const onPhotoPreviewClick = (evt) => {
-  if (!evt.target.closest('.picture')) {
-    return;
-  } else {
-    evt.preventDefault();
-
-    const photoId = evt.target.closest('.picture').dataset.id;
-
-    selectPhoto(photoId);
-    openPhotoViewModal();
-  }
+  photoPreviewsWrapper.appendChild(photoPreviewsFragment);
 };
 
-photoPreviewsWrapper.addEventListener('click', onPhotoPreviewClick);
+// Функция для создания и добавления обработчика нажатия по миниатюрам фотографий
+const setPhotoPreviewsClick = (photoDescriptions) => {
+  const onPhotoPreviewClick = (evt) => {
+    if (!evt.target.closest('.picture')) {
+      return;
+    } else {
+      evt.preventDefault();
+
+      const photoId = evt.target.closest('.picture').dataset.id;
+
+      selectPhoto(photoDescriptions[photoId]);
+      openPhotoViewModal();
+    }
+  };
+
+  photoPreviewsWrapper.addEventListener('click', onPhotoPreviewClick);
+};
+
+export {renderPhotoPreviews, setPhotoPreviewsClick};
