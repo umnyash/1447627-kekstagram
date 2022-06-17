@@ -1,5 +1,6 @@
 import {getData} from './api.js';
 import {renderPhotoPreviews, setPhotoPreviewsClick} from './photo-previews.js';
+import {showAlert} from './util.js';
 import './photo-upload-modal.js';
 import './photo-effects.js';
 import './photo-upload-text.js';
@@ -11,4 +12,4 @@ getData((photoDescriptions) => {
 
   renderPhotoPreviews(photoDescriptionsLimited);
   setPhotoPreviewsClick(photoDescriptionsLimited);
-});
+}, showAlert.bind(null, 'Не удалось загрузить фотографии =( Попробуйте обновить страницу'));

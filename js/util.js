@@ -54,13 +54,13 @@ const isEscEvent = (evt) => {
 const showAlert = (message) => {
   const alert = document.createElement('p');
   alert.style.zIndex = 100;
-  alert.style.position = 'absolute';
+  alert.style.position = 'fixed';
   alert.style.top = 0;
   alert.style.right = 0;
   alert.style.left = 0;
   alert.style.padding = '10px';
   alert.style.margin = '0';
-  alert.style.fontSize = '30px';
+  alert.style.fontSize = '20px';
   alert.style.textAlign = 'center';
   alert.style.backgroundColor = 'red';
   alert.textContent = message;
