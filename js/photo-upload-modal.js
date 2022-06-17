@@ -122,7 +122,7 @@ photoUploadInput.addEventListener('change', openPhotoUploadModal);
 
 modalCloseButton.addEventListener('click', closePhotoUploadModal);
 
-//
+// Функция для создания обработчика отправки формы
 const setPhotoUploadFormSubmit = (onSuccess, onFail) => {
   photoEditForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
