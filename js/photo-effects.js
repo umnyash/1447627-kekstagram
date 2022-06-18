@@ -97,6 +97,7 @@ effectsButtons.forEach((button) => {
     } else {
       currentEffect = effectName;
 
+      effectLevelInput.step = Effects[effectName].STEP;
       setRangeOptions(effectName);
       setPhotoEffectClass(`effects__preview--${effectName}`);
 
@@ -109,5 +110,6 @@ effectsButtons.forEach((button) => {
 
 effectLevelRange.noUiSlider.on('update', (values, handle) => {
   effectLevelInput.value = values[handle];
+  console.log(effectLevelInput.value);
   setPhotoFilter(createFilter(currentEffect, values[handle]));
 });
