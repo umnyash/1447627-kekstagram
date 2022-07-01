@@ -110,6 +110,5 @@ effectsButtons.forEach((button) => {
 
 effectLevelRange.noUiSlider.on('update', (values, handle) => {
   effectLevelInput.value = values[handle];
-  console.log(effectLevelInput.value);
   setPhotoFilter(createFilter(currentEffect, values[handle]));
 });

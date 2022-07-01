@@ -4,7 +4,7 @@ const photoPreviewsWrapper = document.querySelector('.pictures');
 const photoPreviewTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
 // Создание миниатюры фотографии
-const createphotoPreview = ({id, url, comments, likes}) => {
+const createPhotoPreview = ({id, url, comments, likes}) => {
   const photoPreview = photoPreviewTemplate.cloneNode(true);
 
   photoPreview.dataset.id = id;
@@ -20,11 +20,16 @@ const renderPhotoPreviews = (photoDescriptions) => {
   const photoPreviewsFragment = document.createDocumentFragment();
 
   photoDescriptions.forEach((photo) => {
-    photoPreviewsFragment.appendChild(createphotoPreview(photo));
+    photoPreviewsFragment.appendChild(createPhotoPreview(photo));
   });
 
   photoPreviewsWrapper.appendChild(photoPreviewsFragment);
 };
+
+// Функция для удаления миниатюр фотографий
+const removePhotoPreviews = () => {
+  document.querySelectorAll('.picture').forEach((item) => item.remove());
+}
 
 // Функция для создания и добавления обработчика нажатия по миниатюрам фотографий
 const setPhotoPreviewsClick = (photoDescriptions) => {
@@ -44,4 +49,4 @@ const setPhotoPreviewsClick = (photoDescriptions) => {
   photoPreviewsWrapper.addEventListener('click', onPhotoPreviewClick);
 };
 
-export {renderPhotoPreviews, setPhotoPreviewsClick};
+export {renderPhotoPreviews, setPhotoPreviewsClick, removePhotoPreviews};
