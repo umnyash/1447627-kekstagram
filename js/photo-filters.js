@@ -1,6 +1,7 @@
 import {createUniqueRandomIntegerGenerator} from './util.js';
 
 const RANDOM_PHOTOS_COUNT = 10;
+const RERENDER_DELAY = 500;
 
 const photoFilters = document.querySelector('.img-filters');
 const photoFiltersWrapper = photoFilters.querySelector('.img-filters__form');
@@ -47,7 +48,7 @@ const filterPhotos = (photos, option, clear, render) => {
 
 const setPhotoFilterButtonClick = (photoDescriptions, clear, render) => {
 
-  photoFiltersWrapper.addEventListener('click', (evt) => {
+  photoFiltersWrapper.addEventListener('click', _.debounce((evt) => {
     if (evt.target.className === 'img-filters__button') {
       currentFilterButton.classList.remove('img-filters__button--active');
       currentFilterButton = evt.target;
@@ -56,7 +57,7 @@ const setPhotoFilterButtonClick = (photoDescriptions, clear, render) => {
 
       filterPhotos(photoDescriptions, currentFilter, clear, render);
     }
-  });
+  }, RERENDER_DELAY));
 };
 
 export {showPhotoFilters, setPhotoFilterButtonClick};
