@@ -1,6 +1,8 @@
 import {sendData} from './api.js';
 import {isEscEvent} from './util.js';
 
+const FILE_TYPES = ['jpg', 'jpeg', 'png', 'webp'];
+
 const Scale = {
   MIN_VALUE: 25,
   MAX_VALUE: 100,
@@ -16,6 +18,23 @@ const photo = photoUploadModal.querySelector('.img-upload__preview img');
 const modalCloseButton = photoUploadModal.querySelector('.img-upload__cancel');
 const hashtagsField = photoUploadModal.querySelector('.text__hashtags');
 const descriptionField = photoUploadModal.querySelector('.text__description');
+
+// Загрузка изображения
+
+photoUploadInput.addEventListener('change', () => {
+  const file = photoUploadInput.files[0];
+  const fileName = file.name.toLowerCase();
+
+  if (FILE_TYPES.some((it) => fileName.endsWith(it))) {
+    const reader = new FileReader();
+
+    reader.addEventListener('load', () => {
+      photo.src = reader.result;
+    });
+
+    reader.readAsDataURL(file);
+  }
+});
 
 // Масштабирование изображения
 
