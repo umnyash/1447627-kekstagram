@@ -1,3 +1,5 @@
+/* global noUiSlider */
+
 import '../nouislider/nouislider.js';
 import {setPhotoEffectClass, setPhotoFilter, removePhotoEffect} from './photo-upload-modal.js';
 
@@ -45,7 +47,7 @@ const effectLevelRange = effectLevelWrapper.querySelector('.effect-level__slider
 
 // Инициализация диапазона
 
-window.noUiSlider.create(effectLevelRange, {
+noUiSlider.create(effectLevelRange, {
   range: {
     min: 0,
     max: 1,

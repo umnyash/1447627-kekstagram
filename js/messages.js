@@ -1,4 +1,4 @@
-import { isEscEvent } from "./util.js";
+import { isEscEvent } from './util.js';
 
 const errorMessageTemplate = document.querySelector('#error').content.querySelector('.error');
 const successMessageTemplate = document.querySelector('#success').content.querySelector('.success');

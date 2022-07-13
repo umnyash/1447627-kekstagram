@@ -149,7 +149,7 @@ const setPhotoUploadFormSubmit = (onSuccess, onFail) => {
     sendData(
       () => onSuccess(),
       () => onFail(),
-      new FormData(evt.target)
+      new FormData(evt.target),
     );
   });
 };

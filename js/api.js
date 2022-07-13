@@ -23,16 +23,16 @@ const sendData = (onSuccess, onFail, body) => {
     method: 'POST',
     body,
   })
-  .then((response) => {
-    if(response.ok) {
-      onSuccess();
-    } else {
+    .then((response) => {
+      if(response.ok) {
+        onSuccess();
+      } else {
+        onFail();
+      }
+    })
+    .catch(() => {
       onFail();
-    }
-  })
-  .catch(() => {
-    onFail();
-  });
+    });
 };
 
 export {getData, sendData};

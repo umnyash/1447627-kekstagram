@@ -1,3 +1,5 @@
+/* global _ */
+
 import {createUniqueRandomIntegerGenerator} from './util.js';
 
 const RANDOM_PHOTOS_COUNT = 10;
