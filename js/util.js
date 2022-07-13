@@ -72,4 +72,16 @@ const showAlert = (message) => {
   }, ALERT_SHOW_TIME);
 };
 
-export {getRandomInteger, getRandomArrayItem, createUniqueRandomIntegerGenerator, isEscEvent, checkMinLength, checkMaxLength, showAlert};
+const debounce = (cb, timeout) => {
+  let timeoutId;
+
+  return () => {
+    clearTimeout(timeoutId);
+
+    timeoutId = setTimeout(() => {
+      cb();
+    }, timeout);
+  }
+}
+
+export {getRandomInteger, getRandomArrayItem, createUniqueRandomIntegerGenerator, isEscEvent, checkMinLength, checkMaxLength, showAlert, debounce};
