@@ -1,6 +1,5 @@
-/* global noUiSlider */
-
-import '../nouislider/nouislider.js';
+import noUiSlider from 'nouislider';
+import 'nouislider/dist/nouislider.css';
 import {setPhotoEffectClass, setPhotoFilter, removePhotoEffect} from './photo-upload-modal.js';
 
 const Effects = {

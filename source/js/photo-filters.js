@@ -1,6 +1,5 @@
-/* global _ */
-
 import {createUniqueRandomIntegerGenerator} from './util.js';
+import debounce from 'lodash.debounce';
 
 const RANDOM_PHOTOS_COUNT = 10;
 const RERENDER_DELAY = 500;
@@ -50,7 +49,7 @@ const filterPhotos = (photos, option, clear, render) => {
 
 const setPhotoFilterButtonClick = (photoDescriptions, clear, render) => {
 
-  photoFiltersWrapper.addEventListener('click', _.debounce((evt) => {
+  photoFiltersWrapper.addEventListener('click', debounce((evt) => {
     if (evt.target.className === 'img-filters__button') {
       currentFilterButton.classList.remove('img-filters__button--active');
       currentFilterButton = evt.target;
